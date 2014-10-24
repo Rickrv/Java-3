@@ -5,9 +5,11 @@
  */
 package com.jc.elementos.model;
 
+import java.util.ArrayList;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -16,12 +18,17 @@ import org.hibernate.Transaction;
 public class Insertar {
     public static void main(String args[]){
     SessionFactory sesion=    NewHibernateUtil.getSessionFactory();
-  Session mala=  sesion.openSession();
-  Transaction t=mala.beginTransaction();
-  
-                 mala.save(new Trabajador("juan", "campos", "martinez"));
-             t.commit();
-                 sesion.close();
-                 System.out.println("Se ha guardado este trabajadorcito");
+  Session ses=  sesion.openSession();
+  Transaction t=ses.beginTransaction();
+            //ses.delete(new Trabajador (2)); borrar
+          // ArrayList<Trabajador>tra=(ArrayList<Trabajador>) ses.createCriteria(Trabajador.class).list();
+           //for(Trabajador tonto:tra){
+          //     System.out.println(tonto);
+           //}
+  Trabajador uno=(Trabajador)ses.createCriteria
+          (Trabajador.class).add(Restrictions.idEq(1)).uniqueResult();
+           t.commit();
+            ses.close();
+                
     }
 }
