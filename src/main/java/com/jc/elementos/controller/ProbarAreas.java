@@ -11,9 +11,9 @@ package com.jc.elementos.controller;
  */
 public class ProbarAreas {
 
-    static ServicioSuperficie superficie;
-    public static void main(String[] args) {
     
+    public static void main(String[] args) {
+    ServicioSuperficie superficie=new ServicioSuperficie();
     System.out.println(superficie.ServicioArea());
     
    }
